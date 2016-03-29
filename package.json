@@ -1,0 +1,26 @@
+{
+  "name": "standardize-time",
+  "version": "1.0.0",
+  "description": "npm package used to standardize time to months",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alexander-Wen/standardize-time.git"
+  },
+  "keywords": [
+    "time",
+    "standard",
+    "standardize",
+    "months",
+    "convert"
+  ],
+  "author": "Alex Wen <alex@alexanderwen.me>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alexander-Wen/standardize-time/issues"
+  },
+  "homepage": "https://github.com/Alexander-Wen/standardize-time#readme"
+}
