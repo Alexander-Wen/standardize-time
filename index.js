@@ -1,19 +1,59 @@
 'use strict';
 
-const ones = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
-const teens = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'ninteen'];
-const tens = ['ten', 'twenty', 'thirty', 'fourty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+const WtoN = require('words-to-num');
+
+const DAY = 'day';
+const MONTH = 'month';
+const YEAR = 'year';
+const UNKNOWN = 'unknown';
+
+const daysText = ['days', 'day'];
+const monthsText = ['months', 'month'];
+const yearsText = ['years', 'year'];
 
 function standardizeTime(time) {
   let result = time;
-  ones.map((number, index) => result = result.replace(number, index));
-  teens.map((number, index) => result = result.replace(number, index + 10));
-  tens.map((number, index) => result = result.replace(number, (index + 1) * 10));
+  result = result.toLowerCase();
+  result = result.replace(/-/gi, ' ');
 
-  // result = result
-  //   .replace(/-/g, ' ');
+  let dateFormat;
+  daysText.map(text => {
+    if (!!result.match(text) && !dateFormat) {
+      dateFormat = DAY;
+      let regex = new RegExp(text, 'g');
+      result = result.replace(regex, '');
+    }
+  });
+  monthsText.map(text => {
+    if (!!result.match(text) && !dateFormat) {
+      dateFormat = MONTH;
+      let regex = new RegExp(text, 'g');
+      result = result.replace(regex, '');
+    }
+  });
+  yearsText.map(text => {
+    if (!!result.match(text) && !dateFormat) {
+      dateFormat = YEAR;
+      let regex = new RegExp(text, 'g');
+      result = result.replace(regex, '');
+    }
+  });
 
-  return result;
+  result = WtoN.convert(result);
+
+  switch (dateFormat) {
+    case DAY:
+      result = result/30;
+      break;
+    case YEAR:
+      result = result * 12;
+      break;
+    case MONTH:
+    default:
+      break;
+  }
+
+  return Math.round(result * 100) / 100;
 }
 
 module.exports = standardizeTime;

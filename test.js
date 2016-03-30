@@ -1,6 +1,6 @@
 const standardizeTime = require('./index.js');
 
-const testData = [
+const basicTestData = [
   '1 month',
   '3 months',
   '13 months',
@@ -36,4 +36,10 @@ const testData = [
   'thirty-three days',
 ];
 
-testData.map(data => console.log(data + ' => ' + standardizeTime(data)));
+const mediumTestData = [
+  '3.5 months',
+  '3.5 years',
+  '3.5 days',
+];
+
+mediumTestData.map(data => console.log(data + ' => ' + standardizeTime(data)));

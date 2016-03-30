@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/Alexander-Wen/standardize-time/issues"
   },
-  "homepage": "https://github.com/Alexander-Wen/standardize-time#readme"
+  "homepage": "https://github.com/Alexander-Wen/standardize-time#readme",
+  "dependencies": {
+    "words-to-num": "0.0.2"
+  }
 }
